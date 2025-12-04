@@ -21,12 +21,21 @@ for(var contador = 0; contador <= 4; contador++) {
   var pesoEhValido = true;
   var alturaEhValida = true;
 
-  if (peso < 0) {
-    tdPeso.textContent = "Peso inválido!";
+  if (peso < 0 || peso > 600) {
+    tdImc.textContent = "Peso inválido";
+    pesoEhValido = false;
+    pacientes[contador].classList.add("dados-invalidos")
   }
 
-  if (altura < 0) {
-    tdAltura.textContent = "Altura inválida!"
+  if (altura < 0 || altura > 2.80) {
+    tdImc.textContent = "Altura inválida!";
+    alturaEhValida = false;
+    pacientes[contador].classList.add("dados-invalidos")
+  }
+
+  if (pesoEhValido && alturaEhValida){
+    var imc = calculaImc(peso, altura);
+    tdImc.textContent = imc;
   }
 }
 
